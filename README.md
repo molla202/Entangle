@@ -11,14 +11,16 @@ cd entangle-blockchain
 ```
 make install
 ```
-
+### Cüzdan Oluşturma
+Not: cüzdan adı ve şifre girelim
 ```
-sh init_key.sh <key_name> <password>
+sh init_key.sh cüzdan-adı şifregir
 ```
+### Snap Çekelim 70gb civarı
 ```
 curl -sSL -o get_snapshot.sh https://raw.githubusercontent.com/molla202/Entangle/main/get_snapshot.sh && chmod +x get_snapshot.sh && bash ./get_snapshot.sh
 ```
-
+### İnit işlemi
 ```
 entangled init moniker-yazınız --chain-id entangle_33133-1
 ```
@@ -57,7 +59,7 @@ sudo systemctl enable entangled
 sudo systemctl restart entangled && sudo journalctl -u entangled -fo cat
 ```
 ### Private key alıp MM eklıyoruz...
-NOT: MM ekledikten sonra çıkan adresle Discorddan faucet kanalına verify diyoruz bot mesaj atıyor ona adresi yazıyoruz oda yyolluyor
+NOT: MM ekledikten sonra çıkan adresle Discorddan faucet kanalına verify diyoruz bot mesaj atıyor ona adresi yazıyoruz oda yolluyor
 ```
 entangled keys unsafe-export-eth-key <key_name>
 ```
