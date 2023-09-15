@@ -19,6 +19,7 @@ sh init_key.sh cüzdan-adı şifregir
 ```
 ### Snap Çekelim 70gb civarı
 ```
+cd
 curl -sSL -o get_snapshot.sh https://raw.githubusercontent.com/molla202/Entangle/main/get_snapshot.sh && chmod +x get_snapshot.sh && bash ./get_snapshot.sh
 ```
 ### İnit işlemi
