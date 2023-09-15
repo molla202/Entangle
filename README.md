@@ -62,7 +62,7 @@ sudo systemctl restart entangled && sudo journalctl -u entangled -fo cat
 ### Private key alıp MM eklıyoruz...
 NOT: MM ekledikten sonra çıkan adresle Discorddan faucet kanalına verify diyoruz bot mesaj atıyor ona adresi yazıyoruz oda yolluyor
 ```
-entangled keys unsafe-export-eth-key <key_name>
+entangled keys unsafe-export-eth-key cüzdan-adı
 ```
 ### Validator olusturuyoruz
 ```
