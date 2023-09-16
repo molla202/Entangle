@@ -3,6 +3,32 @@
 
 
 https://discord.gg/entanglefi
+## Gereklilikleri kuralım
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl git wget htop tmux build-essential jq make gcc -y
+```
+## Go Kurulumu Yapıyoruz
+```
+cd $HOME
+VER="1.19.3"
+wget "https://golang.org/dl/go$VER.linux-amd64.tar.gz"
+sudo tar -C /usr/local -xzf "go$VER.linux-amd64.tar.gz"
+rm -rf  "go$VER.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+go version
+```
+## Python3.7+  yüklüyoruz
+```
+sudo apt update && sudo apt install python3.10-venv
+```
+Not: Burda hata alırsanız önemsemeyin devam
+## Python3 Pip ve venv yüklüyoruz  
+```
+sudo apt update
+sudo apt install python3-venv python3-pip
+```
 
 ### Dosyaları çekiyoruz
 ```
