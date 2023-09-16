@@ -107,10 +107,13 @@ entangled tx staking create-validator \
 --from=<key_name>
 ```
 ### Delege
+```
 entangled tx staking delegate <TO_VALOPER_ADDRESS> 5000000000000000000aNGL --from $WALLET --chain-id entangle_33133-1 -gas=500000 --gas-prices="10aNGL" -y
+```
 ### Redelege
+```
 entangled tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 5000000000000000000aNGL --from $WALLET --chain-id entangle_33133-1 -gas=500000 --gas-prices="10aNGL" -y
-
+```
 ### Validator form
 ```
 https://docs.google.com/forms/d/e/1FAIpQLSdbz39mklMegjmw4G4EBzvBbb-IAEOJrooOUwTesIc6xnDGUA/viewform?usp=send_form
