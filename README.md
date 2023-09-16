@@ -106,7 +106,15 @@ entangled tx staking create-validator \
 --gas-prices="10aNGL" \
 --from=<key_name>
 ```
-
+### Delege
+```
+entangled tx staking delegate \
+--chain-id=entangle_33133-1 \
+--amount="5000000000000000000aNGL" \
+--gas=500000 \
+--gas-prices="10aNGL" \
+--from=<key_name>
+```
 ### Validator form
 ```
 https://docs.google.com/forms/d/e/1FAIpQLSdbz39mklMegjmw4G4EBzvBbb-IAEOJrooOUwTesIc6xnDGUA/viewform?usp=send_form
