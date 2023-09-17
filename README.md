@@ -33,6 +33,7 @@ make install
 ### İnit işlemi : moniker yazınz
 ```
 entangled config chain-id entangle_33133-1
+entangled config keyring-backend file
 entangled init "$NODE_MONIKER" --chain-id entangle_33133-1
 ```
 ```
