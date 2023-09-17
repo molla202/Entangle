@@ -122,3 +122,7 @@ entangled tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 5000000000
 ```
 https://docs.google.com/forms/d/e/1FAIpQLSdbz39mklMegjmw4G4EBzvBbb-IAEOJrooOUwTesIc6xnDGUA/viewform?usp=send_form
 ```
+### unjail
+```
+entangled tx slashing unjail --from molla202 --chain-id entangle_33133-1 --gas-prices="10aNGL" -y
+```
