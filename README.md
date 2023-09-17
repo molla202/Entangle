@@ -90,6 +90,11 @@ NOT: MM ekledikten sonra çıkan adresle Discorddan faucet kanalına verify diyo
 ```
 entangled keys unsafe-export-eth-key cüzdan-adı
 ```
+
+### cüzdan
+```
+entangled keys add wallet
+```
 ### Validator olusturuyoruz
 ```
 entangled tx staking create-validator \
