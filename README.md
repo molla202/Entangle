@@ -93,7 +93,7 @@ entangled keys unsafe-export-eth-key cüzdan-adı
 
 ### cüzdan
 ```
-entangled keys add wallet
+entangled keys add $KEY --keyring-backend file --algo eth_secp256k1
 ```
 ### Validator olusturuyoruz
 ```
