@@ -5,8 +5,9 @@
 https://discord.gg/entanglefi
 ## Gereklilikleri kuralım
 ```
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl git wget htop tmux build-essential jq make gcc -y
+apt update && apt upgrade -y
+
+apt install curl iptables build-essential git wget jq make gcc nano tmux htop nvme-cli pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
 ```
 ## Go Kurulumu Yapıyoruz
 ```
@@ -19,60 +20,58 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 go version
 ```
-## Python3.7+  yüklüyoruz
-```
-sudo apt update && sudo apt install python3.10-venv
-```
-Not: Burda hata alırsanız önemsemeyin devam
-## Python3 Pip ve venv yüklüyoruz  
-```
-sudo apt update
-sudo apt install python3-venv python3-pip
-```
 
 ### Dosyaları çekiyoruz
 ```
-git clone https://github.com/Entangle-Protocol/entangle-blockchain
+rm -rf entangle-blockchain
+git clone https://github.com/Entangle-Protocol/entangle-blockchain.git
 cd entangle-blockchain
-```
-```
+git checkout v1.0.1
 make install
 ```
-### Cüzdan Oluşturma
-Not: cüzdan adı ve şifre girelim
+
+### İnit işlemi : moniker yazınz
 ```
-sh init_key.sh cüzdan-adı şifregir
-```
-### Snap Çekelim 70gb civarı
-```
-cd
-curl -sSL -o get_snapshot.sh https://raw.githubusercontent.com/molla202/Entangle/main/get_snapshot.sh && chmod +x get_snapshot.sh && bash ./get_snapshot.sh
-```
-### İnit işlemi
-```
-entangled init moniker-yazınız --chain-id entangle_33133-1
+entangled config chain-id entangle_33133-1
+entangled init "$NODE_MONIKER" --chain-id entangle_33133-1
 ```
 ```
-cd
-cd entangle-blockchain
-cp config/genesis.json $HOME/.entangled/config/
-cp config/config.toml $HOME/.entangled/config/
+curl -s https://ss.nodeist.net/t/entangle/genesis.json > $HOME/.entangled/config/genesis.json
+curl -s https://ss.nodeist.net/t/entangle/addrbook.json > $HOME/.entangled/config/addrbook.json
+```
+### ayarlamalar
+```
+SEEDS=""
+PEERS=""
+sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.entangled/config/config.toml
+
+sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.entangled/config/app.toml
+sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.entangled/config/app.toml
+sed -i 's|^pruning-interval *=.*|pruning-interval = "10"|g' $HOME/.entangled/config/app.toml
+sed -i 's|^snapshot-interval *=.*|snapshot-interval = 0|g' $HOME/.entangled/config/app.toml
+
+sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.025aNGL"|g' $HOME/.entangled/config/app.toml
+sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.entangled/config/config.toml
 ```
 ### Servis oluşturuyoruz
 ```
-sudo tee /etc/systemd/system/entangled.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/entangled.service > /dev/null << EOF
 [Unit]
-Description=entangle node
+Description=Entangle Node
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which entangled) start --pruning=nothing --evm.tracer=json --log_level info --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
+ExecStart=$(which entangled) start
 Restart=on-failure
-RestartSec=3
-LimitNOFILE=65535
+RestartSec=10
+LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
 EOF
+```
+## snap
+```
+curl -L https://ss.nodeist.net/t/entangle/snapshot_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled --strip-components 2
 ```
 ### Port değiştirmek isterseniz (opsiyonel)
 ```
